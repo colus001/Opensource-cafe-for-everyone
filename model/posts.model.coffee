@@ -1,10 +1,12 @@
 @Posts = new Mongo.Collection('posts')
 
-Posts.allow
+Posts.allow(
   insert: (userId, post) ->
     post.ownerId = Meteor.userId()
+    post.boardId = Boards.findOne(symbol: post.board)._id
     true
   update: (userId, post, fields, modifier) ->
     true
   remove: (userId, post) ->
     true
+)

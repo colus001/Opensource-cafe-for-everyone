@@ -9,7 +9,7 @@ angular.module 'theCafeApp'
     controller: 'BoardsListCtrl'
   )
   .state('board-detail',
-    url: '/boards/:boardId'
+    url: '/boards/:symbol'
     templateUrl: 'client/boards/board-detail.view.ng.html'
     controller: 'BoardDetailCtrl'
   )

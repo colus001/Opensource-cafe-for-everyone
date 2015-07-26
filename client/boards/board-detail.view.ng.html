@@ -1,5 +1,14 @@
 <div class="board-detail container">
   <h1>{{ board.title }}</h1>
   <p class="help-block">{{ board.description }}</p>
-  <button class="btn btn-info" ng-click="open()">OPEN</button>
+  <button class="btn btn-info" ng-click="open()">Write</button>
+
+  <ul class="post-list">
+    <a href="http://{{ post.link }}" ng-repeat="post in posts track by post._id">
+      <li class="post-list-item">
+        <p>{{ $index+1 }} | {{ post.title }}<span class="pull-right">by {{ post.ownerId }}</span></p>
+        <p>{{ post.link || post.text }}</p>
+      </li>
+    </a>
+  </ul>
 </div>

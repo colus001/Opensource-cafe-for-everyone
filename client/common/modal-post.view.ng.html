@@ -1,7 +1,7 @@
 <div class="modal-header">
   <h3 class="modal-title">Create New Post</h3>
 </div>
-<form name="form" ng-submit="post()" novalidate>
+<form name="postForm" ng-submit="post()" novalidate>
   <div class="modal-body">
     <tabset>
       <tab heading="Link">
@@ -20,8 +20,8 @@
 
         <!-- COMMON -->
         <div class="form-group">
-          <label>Board Name</label>
-          <input type="text" class="form-control" ng-model="newPost.board" placeholder="{{ board.title }}"/>
+          <label>Board Symbol</label>
+          <input type="text" class="form-control" ng-model="newPost.board" placeholder="{{ board.symbol }}"/>
         </div>
         <!-- COMMON -->
       </tab>
@@ -42,8 +42,8 @@
 
         <!-- COMMON -->
         <div class="form-group">
-          <label>Board Name</label>
-          <input type="text" class="form-control" ng-model="newPost.board" placeholder="{{ board.title }}"/>
+          <label>Board Symbol</label>
+          <input type="text" class="form-control" ng-model="newPost.board" placeholder="{{ board.symbol }}"/>
         </div>
         <!-- COMMON -->
       </tab>

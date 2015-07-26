@@ -4,7 +4,7 @@ Meteor.publish 'boards', (options, searchString) ->
   if !searchString
     searchString = ''
   Counts.publish this, 'numberOfBoards', Boards.find(
-    'name':
+    'title':
       '$regex': '.*' + searchString or '' + '.*'
       '$options': 'i'
   ), noReady: true

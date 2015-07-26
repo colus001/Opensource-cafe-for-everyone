@@ -23,11 +23,6 @@ angular.module('theCafeApp')
       )
   )
 
-  $scope.save = ->
-    return unless $scope.form.$valid
-    $scope.boards.save($scope.newBoard)
-    $scope.newBoard = undefined
-
   $scope.remove = (board) ->
     $scope.boards.remove(board)
 

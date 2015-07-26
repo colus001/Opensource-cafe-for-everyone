@@ -1,2 +1,2 @@
 @Util =
-  slugify: (text) -> unidecode(text).replace(' ', '-') if text
+  slugify: (text) -> unidecode(text).replace(' ', '-').replace('.', '').toLowerCase() if text

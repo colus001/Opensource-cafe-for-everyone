@@ -3,13 +3,12 @@
     <ul class="boards-list">
       <li class="board-list-title" dir-paginate="board in boards | itemsPerPage: perPage" total-items="boardsCount.count">
         <p class="board-list-description">
-          <a href="/boards/{{ board._id }}">{{ board.title }}</a>
-          {{ board.description }}
+          <a href="/boards/{{ board.symbol }}">{{ board.symbol }}</a>
         </p>
       </li>
     </ul>
     <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
-    <button class="btn btn-block btn-default" ng-click="open()">OPEN</button>
+    <button class="btn btn-block btn-default" ng-click="open()">Create New Board</button>
   </div>
   <div class="col-md-8">
   </div>
