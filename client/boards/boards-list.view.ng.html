@@ -3,7 +3,7 @@
     <ul class="boards-list">
       <li class="board-list-title" dir-paginate="board in boards | itemsPerPage: perPage" total-items="boardsCount.count">
         <p class="board-list-description">
-          <a href="/boards/{{ board.symbol }}">{{ board.symbol }}</a>
+          <a href="/boards/{{ board.symbol }}" popover-title="{{ board.title }}" popover="{{ board.description }}" popover-trigger="mouseenter">{{ board.symbol }}</a>
         </p>
       </li>
     </ul>
