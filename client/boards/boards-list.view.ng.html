@@ -1,9 +1,8 @@
 <div class="boards-list container">
   <div class="row">
     <div class="col-md-4">
-      <button class="btn btn-sm btn-default pull-right" ng-click="open()">NEW BOARD</button>
-      <h4>Boards</h4>
-      <p ng-repeat="board in boards"><a href="/boards/{{ board.symbol }}" popover-title="{{ board.title }}" popover="{{ board.description }}" popover-trigger="mouseenter" popover-placement="right">{{ board.symbol }}</a></p>
+      <h4>Boards <button class="btn btn-sm btn-primary pull-right" ng-click="open()">NEW</button></h4>
+      <a class="board-item" ng-repeat="board in boards" href="/boards/{{ board.symbol }}" popover-title="{{ board.title }}" popover="{{ board.description }}" popover-trigger="mouseenter" popover-placement="right">{{ board.symbol }}</a>
     </div>
 
     <div class="col-md-8">
