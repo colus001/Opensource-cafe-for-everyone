@@ -10,8 +10,13 @@ angular.module('theCafeApp')
   $scope.boards = $meteor.collection(->
     Boards.find({}, { sort:$scope.getReactively('sort') })
   )
+  $scope.posts = $meteor.collection(->
+    Posts.find({}, { sort:$scope.getReactively('sort') })
+  )
 
   $meteor.autorun($scope, ->
+    $meteor
+      .subscribe('posts')
     $meteor
       .subscribe('boards', {
         limit: parseInt($scope.getReactively('perPage'))
