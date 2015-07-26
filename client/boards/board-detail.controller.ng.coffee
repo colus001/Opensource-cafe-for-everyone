@@ -10,6 +10,8 @@ angular.module('theCafeApp')
     $scope.posts = $meteor.collection(-> Posts.find({boardId: $scope.board._id}))
   )
 
+  $scope.getHref = (link) -> if link then "http://#{link}" else "#"
+
   $scope.open = ->
     modalInstance = $modal.open(
       templateUrl: 'client/common/modal-post.view.ng.html'

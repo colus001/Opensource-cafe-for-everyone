@@ -18,15 +18,10 @@ angular.module('theCafeApp')
     $meteor
       .subscribe('posts')
     $meteor
-      .subscribe('boards', {
-        limit: parseInt($scope.getReactively('perPage'))
-        skip: parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'))
-        sort: $scope.getReactively('sort')
-      }, $scope.getReactively('search'))
-      .then(->
-        $scope.boardsCount = $meteor.object(Counts, 'numberOfBoards', false)
-      )
+      .subscribe('boards')
   )
+
+  $scope.getHref = (link) -> if link then "http://#{link}" else "#"
 
   $scope.remove = (board) ->
     $scope.boards.remove(board)
