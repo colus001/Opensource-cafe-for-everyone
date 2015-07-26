@@ -1,9 +1,9 @@
 <div class="boards-list container">
   <div class="row">
     <div class="col-md-4">
+      <button class="btn btn-sm btn-default pull-right" ng-click="open()">NEW BOARD</button>
       <h4>Boards</h4>
-      <p ng-repeat="board in boards"><a href="/boards/{{ board.symbol }}" popover-title="{{ board.title }}" popover="{{ board.description }}" popover-trigger="mouseenter">{{ board.symbol }}</a></p>
-      <button class="btn btn-block btn-default" ng-click="open()">Create New Board</button>
+      <p ng-repeat="board in boards"><a href="/boards/{{ board.symbol }}" popover-title="{{ board.title }}" popover="{{ board.description }}" popover-trigger="mouseenter" popover-placement="right">{{ board.symbol }}</a></p>
     </div>
 
     <div class="col-md-8">
@@ -12,7 +12,7 @@
         <a href="{{ getHref(post.link) }}" ng-repeat="post in posts track by post._id">
           <li class="post-list-item">
             <p>{{ $index+1 }} | {{ post.title }} <span class="label label-success">{{ post.board }}</span><span class="pull-right">by {{ post.ownerId }}</span></p>
-            <p>{{ post.link || post.text }}</p>
+            <p class="post-list-description">{{ post.link || post.text }}</p>
           </li>
         </a>
       </ul>

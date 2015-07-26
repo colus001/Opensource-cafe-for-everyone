@@ -7,7 +7,7 @@
     <a href="{{ getHref(post.link) }}" ng-repeat="post in posts track by post._id">
       <li class="post-list-item">
         <p>{{ $index+1 }} | {{ post.title }}<span class="pull-right">by {{ post.ownerId }}</span></p>
-        <p>{{ post.link || post.text }}</p>
+        <p class="post-list-description">{{ post.link || post.text }}</p>
       </li>
     </a>
   </ul>
