@@ -1,0 +1,16 @@
+<div class="boards-list container">
+  <div class="col-md-4">
+    <ul class="boards-list">
+      <li class="board-list-title" dir-paginate="board in boards | itemsPerPage: perPage" total-items="boardsCount.count">
+        <p class="board-list-description">
+          <a href="/boards/{{ board._id }}">{{ board.title }}</a>
+          {{ board.description }}
+        </p>
+      </li>
+    </ul>
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+    <button class="btn btn-block btn-default" ng-click="open()">OPEN</button>
+  </div>
+  <div class="col-md-8">
+  </div>
+</div>

@@ -1,0 +1,27 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+urigo:angular
+angularui:angular-ui-router
+coffeescript
+twbs:bootstrap
+angularui:angular-ui-bootstrap
+mquandalle:bower
+tmeasday:publish-counts
+angularutils:pagination
+accounts-password
+accounts-ui
+accounts-twitter
+accounts-facebook
+fortawesome:fontawesome
+aldeed:collection2
+less
+underscore
+mrt:meteor-angular-bootstrap
+npm-container
+meteorhacks:npm
+unidecode

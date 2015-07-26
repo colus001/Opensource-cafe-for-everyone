@@ -1,0 +1,17 @@
+{
+  "generator-angular-meteor": {
+    "filters": {
+      "coffee": true,
+      "html": true,
+      "css": true,
+      "pagination": true,
+      "framework": "bootstrap",
+      "bower": true,
+      "auth": true,
+      "oauth": true,
+      "facebookAuth": true,
+      "twitterAuth": true
+    },
+    "appname": "theCafe"
+  }
+}
