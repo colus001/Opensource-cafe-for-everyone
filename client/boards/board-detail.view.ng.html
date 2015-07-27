@@ -4,7 +4,9 @@
   <button class="btn btn-info" ng-click="open()">Write</button>
 
   <ul class="post-list">
-    <a href="{{ getHref(post.link) }}" ng-repeat="post in posts track by post._id">
+    <!-- https://www.reddit.com/r/angularjs/comments/3eo8w6/directive_based_on_honda_otherside_website/ -->
+    <a href="/board/{{ post.board }}/{{ post.ownerId }}/{{ post.slug }}" ng-repeat="post in posts track by post._id">
+    <!-- <a href="{{ getHref(post.link) }}" ng-repeat="post in posts track by post._id"> -->
       <li class="post-list-item">
         <p>{{ $index+1 }} | {{ post.title }}<span class="pull-right">by {{ post.ownerId }}</span></p>
         <p class="post-list-description">{{ post.link || post.text }}</p>

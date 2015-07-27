@@ -9,4 +9,5 @@ angular.module('theCafeApp')
     $modalInstance.close();
   $scope.cancel = -> $modalInstance.dismiss('cancel')
   $scope.newPost = _.defaults({}, board: symbol) if symbol
+  $scope.getSlug = (text) -> Util.slugify(text, decode: false)
 )

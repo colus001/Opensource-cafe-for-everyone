@@ -1,1 +1,5 @@
-<p>This is the {{ viewName }} view</p>
+<div class="container">
+  <a href="/board/{{ getBoardSymbol() }}">{{ getBoardSymbol() }}</a>
+  <h1>{{ post[0].title }}</h1>
+  <p>{{ post[0].link || post[0].text }}</p>
+</div>

@@ -2,7 +2,7 @@
 
 Boards.allow(
   insert: (userId, board) ->
-    board.createdBy = Meteor.userId()
+    board.createdBy = Meteor.user().shortId
     true
   update: (userId, board, fields, modifier) ->
     true
