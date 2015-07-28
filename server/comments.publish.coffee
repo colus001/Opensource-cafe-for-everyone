@@ -1,15 +1,15 @@
 'use strict'
 
-Meteor.publish('boards', (options, searchString) ->
+Meteor.publish('comments', (options, searchString) ->
   searchString = '' if !searchString
 
-  Counts.publish(this, 'numberOfBoards', Boards.find(
+  Counts.publish(this, 'numberOfBoards', Comments.find(
     'title':
       '$regex': '.*' + searchString or '' + '.*'
       '$options': 'i'
   ), noReady: true)
 
-  Boards.find({
+  Comments.find({
     'title':
       '$regex': '.*' + searchString or '' + '.*'
       '$options': 'i'
