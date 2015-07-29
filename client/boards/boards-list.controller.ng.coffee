@@ -15,10 +15,8 @@ angular.module('theCafeApp')
   )
 
   $meteor.autorun($scope, ->
-    $meteor
-      .subscribe('posts')
-    $meteor
-      .subscribe('boards')
+    $meteor.subscribe('posts')
+    $meteor.subscribe('boards')
   )
 
   $scope.getHref = (link) -> if link then "http://#{link}" else "#"
