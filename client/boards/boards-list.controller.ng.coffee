@@ -11,7 +11,12 @@ angular.module('theCafeApp')
     Boards.find({}, { sort:$scope.getReactively('sort') })
   )
   $scope.posts = $meteor.collection(->
-    Posts.find({}, { sort:$scope.getReactively('sort') })
+    options =
+      sort:
+        score: -1
+        createdAt: -1
+      limit: 10
+    Posts.find({}, options)
   )
 
   $meteor.autorun($scope, ->

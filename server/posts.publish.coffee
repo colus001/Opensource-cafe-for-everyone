@@ -16,8 +16,8 @@ Meteor.publish('posts', (options, searchString) ->
 )
 
 Meteor.methods(
-  'upvotePost': (postSlug) ->
-    post = Posts.findOne(slug: postSlug)
+  'upvotePost': (postId) ->
+    post = Posts.findOne(_id: postId)
     userId = this.userId
 
     isUpvoted = _.contains(post.upvoters, userId)
@@ -44,8 +44,8 @@ Meteor.methods(
 
     Posts.update(post._id, options)
 
-  'downvotePost': (postSlug) ->
-    post = Posts.findOne(slug: postSlug)
+  'downvotePost': (postId) ->
+    post = Posts.findOne(_id: postId)
     userId = this.userId
 
     isUpvoted = _.contains(post.upvoters, userId)

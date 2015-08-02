@@ -2,6 +2,7 @@
 
 Posts.allow(
   insert: (userId, post) ->
+    post.createdAt = new Date()
     post.ownerId = Meteor.user().shortId
     post.boardId = Boards.findOne(symbol: post.board)._id
     post.slug = Util.slugify(post.title, decode: false) unless post.slug

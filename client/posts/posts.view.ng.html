@@ -2,19 +2,7 @@
   <a href="/board/{{ getBoardSymbol() }}">{{ getBoardSymbol() }}</a>
 
   <div class="post-list-item">
-    <div class="row">
-      <div class="col-xs-1">
-        <span class="post-list-score">{{ post[0].score || 0 }}</span>
-      </div>
-      <div class="col-xs-11">
-        <p>{{ post[0].title }}<span class="pull-right">by {{ post[0].ownerId }}</span></p>
-        <p><a href="{{post[0].link}}" ng-if="post[0].link" target="_blank">{{ post[0].link }}</a></p>
-        <p ng-if="post[0].text">{{ post[0].text }}</p>
-
-        <button class="btn btn-xs" ng-class="upvoted(post[0]) ? 'btn-success' : 'btn-default'" ng-click="upvote()"><i class="fa fa-fw fa-thumbs-up"></i> 좋아요</button>
-        <button class="btn btn-xs" ng-class="downvoted(post[0]) ? 'btn-danger' : 'btn-default'" ng-click="downvote()"><i class="fa fa-fw fa-thumbs-down"></i> 싫어요</button>
-      </div>
-    </div>
+    <post-list-item ng-repeat="post in posts track by post._id"></post-list-item>
   </div>
 
   <ul class="comment-list">
@@ -31,7 +19,7 @@
     <li class="comment-list-item" ng-repeat="comment in comments track by comment._id">
       <div class="row">
         <div class="col-xs-1">
-          <span class="comment-list-item-score">{{ comment.score || 0 }}</span>
+          <div class="comment-list-item-score">{{ comment.score || 0 }}</div>
         </div>
         <div class="col-xs-11">
           <span class="comment-list-item-author">{{ comment.author }} | {{ comment.createdAt|timeAgo }}</span>

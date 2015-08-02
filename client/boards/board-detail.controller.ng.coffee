@@ -7,7 +7,10 @@ angular.module('theCafeApp')
 
   $meteor.autorun($scope, ->
     $scope.board = $meteor.object(Boards, symbol: $stateParams.symbol)
-    $scope.posts = $meteor.collection(-> Posts.find({boardId: $scope.board._id}))
+    $scope.posts = $meteor.collection(->
+      options = sort: { score: -1, createdAt: -1 }
+      Posts.find(boardId: $scope.board._id, options)
+    )
   )
 
   $scope.getHref = (link) -> if link then "http://#{link}" else "#"
