@@ -2,9 +2,12 @@
 
 angular.module('theCafeApp')
 .controller('PostsCtrl', ($scope, $stateParams, $meteor) ->
+  $meteor.subscribe('comments')
   $meteor.subscribe('posts').then(->
-    $meteor.subscribe('comments')
-    $scope.comments = $meteor.collection(-> Comments.find(postId: $scope.getReactively('post')[0]._id))
+    $scope.comments = $meteor.collection(->
+      options = sort: { createdAt: -1 }
+      Comments.find(postId: $scope.getReactively('post')[0]._id, options)
+    )
   )
 
   $meteor.autorun($scope, ->

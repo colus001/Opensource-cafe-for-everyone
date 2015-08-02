@@ -4,7 +4,7 @@ angular.module 'theCafeApp'
 .config(($stateProvider) ->
   $stateProvider
   .state('boards-list',
-    url: '/board'
+    url: '/'
     templateUrl: 'client/boards/boards-list.view.ng.html'
     controller: 'BoardsListCtrl'
   )
