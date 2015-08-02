@@ -16,6 +16,6 @@ Npm.depends({
 
 Package.onUse(function(api) {
   api.use(['cosmos:browserify@0.2.0'], 'client')
-  api.addFiles(['client.browserify.js', 'unidecode.js'], 'client');
+  api.addFiles(['client.browserify.js'], 'client');
   api.export('unidecode', 'client');
 });

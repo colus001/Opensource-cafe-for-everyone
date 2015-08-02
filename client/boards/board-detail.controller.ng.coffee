@@ -13,8 +13,6 @@ angular.module('theCafeApp')
     )
   )
 
-  $scope.getHref = (link) -> if link then "http://#{link}" else "#"
-
   $scope.open = ->
     modalInstance = $modal.open(
       templateUrl: 'client/common/modal-post.view.ng.html'
