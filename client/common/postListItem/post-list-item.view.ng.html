@@ -8,7 +8,7 @@
       <p class="text-overflow">
         <a href="{{post.link}}" ng-if="post.link" target="_blank"><i class="fa fa-bookmark"></i> {{ post.link }}</a>
       </p>
-      <div ng-switch="type">
+      <div ng-switch="type" ng-if="post.text">
         <p class="post-text" ng-switch-when="view" ng-repeat="line in getMultilineText(post.text) track by $index">{{ line }}</p>
         <p class="text-overflow" ng-switch-default>{{ post.text }}</p>
       </div>
