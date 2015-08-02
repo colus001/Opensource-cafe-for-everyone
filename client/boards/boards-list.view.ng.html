@@ -11,7 +11,11 @@
         <a href="/board/{{ post.board }}/{{ post.ownerId }}/{{ post.slug }}" ng-repeat="post in posts track by post._id">
         <!-- <a href="{{ getHref(post.link) }}" ng-repeat="post in posts track by post._id"> -->
           <li class="post-list-item">
-            <p>{{ $index+1 }} | {{ post.title }} <span class="label label-success">{{ post.board }}</span><span class="pull-right">by {{ post.ownerId }}</span></p>
+            <p>{{ $index+1 }} | {{ post.title }}
+              <span class="label label-default" >{{ post.board }}</span>
+              <!-- <span class="label" style="background-color: #F00">{{ post.board }}</span> -->
+              <span class="pull-right">by {{ post.ownerId }}</span>
+            </p>
             <p class="post-list-description">{{ post.link || post.text }}</p>
           </li>
         </a>

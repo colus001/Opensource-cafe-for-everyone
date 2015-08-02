@@ -15,3 +15,7 @@
 
   makeShortId: (len) ->
     (new Meteor.Collection.ObjectID())._str.substring(0, len)
+
+  urlify: (text) ->
+    text = "http://" + text if !/^(f|ht)tps?:\/\//i.test(text)
+    text
