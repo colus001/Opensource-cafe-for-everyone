@@ -17,18 +17,7 @@
       </form>
     </li>
     <li class="comment-list-item" ng-repeat="comment in comments track by comment._id">
-      <div class="row">
-        <div class="col-xs-1">
-          <div class="comment-list-item-score">{{ comment.score || 0 }}</div>
-        </div>
-        <div class="col-xs-11">
-          <span class="comment-list-item-author">{{ comment.author }} | {{ comment.createdAt|timeAgo }}</span>
-          <p>{{ comment.body }}</p>
-
-          <button class="btn btn-xs" ng-class="upvoted(comment) ? 'btn-success' : 'btn-default'" ng-click="upvote(comment)"><i class="fa fa-fw fa-thumbs-up"></i> 좋아요</button>
-          <button class="btn btn-xs" ng-class="downvoted(comment) ? 'btn-danger' : 'btn-default'" ng-click="downvote(comment)"><i class="fa fa-fw fa-thumbs-down"></i> 싫어요</button>
-        </div>
-      </div>
+      <comment-list-item></comment-list-item>
     </li>
   </ul>
 </div>
