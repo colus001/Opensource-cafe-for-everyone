@@ -11,5 +11,6 @@
     "tests"
   ],
   "dependencies": {
+    "angular-timeago": "~0.2.0"
   }
 }

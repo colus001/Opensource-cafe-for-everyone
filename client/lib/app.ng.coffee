@@ -3,6 +3,7 @@ angular.module('theCafeApp', [
   'ui.router'
   'ui.bootstrap'
   'angularUtils.directives.dirPagination'
+  'yaru22.angular-timeago'
 ])
 
 onReady = ->
