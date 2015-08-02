@@ -7,7 +7,7 @@
 
     text = unidecode(text) if options.decode
     text.toLowerCase()
-      .replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g, '') # Remove all punctuations
+      .replace(/[\?\.,-\/#!$%\^&\*;:{}=\-_`~()]/g, '') # Remove all punctuations
       .replace(/\s+/g, '-')       # Replace spaces with -
       .replace(/\-\-+/g, '-')     # Replace multiple - with single -
       .replace(/^-+/, '')         # Trim - from start of text

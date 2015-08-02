@@ -20,4 +20,7 @@ angular.module('theCafeApp')
         $meteor.call('downvoteComment', comment._id)
       else
         $meteor.call('downvotePost', scope.post._id)
+    scope.getMultilineText = (text) ->
+      text.split('\n')
+    scope.type = attrs.type
 )

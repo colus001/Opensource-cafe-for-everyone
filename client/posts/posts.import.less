@@ -1,7 +1,14 @@
+.post-view {
+  .post-list-item;
+}
+
 .post-list {
   padding: 0;
   a {
     text-decoration: none!important;
+  }
+  .post-text {
+    .text-overflow;
   }
 }
   .post-list-score {
@@ -21,9 +28,7 @@
   }
   .post-list-description {
     width: 90%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    .text-overflow;
   }
 
 
@@ -46,3 +51,9 @@
   .comment-list-form {
     list-style: none;
   }
+
+.text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
