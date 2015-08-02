@@ -2,7 +2,10 @@
 
 Comments.allow(
   insert: (userId, comment) ->
-    comment.createdBy = Meteor.user().shortId
+    user = Meteor.user()
+    comment.createdBy = user.shortId
+    comment.createdAt = new Date()
+    comment.author = user.name or user.emails[0].address
     true
   update: (userId, comment, fields, modifier) ->
     true

@@ -2,16 +2,17 @@
 
 angular.module('theCafeApp')
 .controller('PostsCtrl', ($scope, $stateParams, $meteor) ->
-  $meteor.subscribe('comments')
-  $meteor.subscribe('posts').then(->
-    $scope.comments = $meteor.collection(->
-      options = sort: { createdAt: -1 }
-      Comments.find(postId: $scope.getReactively('post')[0]._id, options)
-    )
-  )
+  $scope.$meteorSubscribe('posts')
+  $scope.$meteorSubscribe('comments')
 
   $meteor.autorun($scope, ->
-    $scope.post = $meteor.collection(-> Posts.find(slug: $stateParams.postSlug))
+    $scope.$meteorSubscribe('posts').then(->
+      $scope.post = $scope.$meteorCollection(-> Posts.find(slug: $stateParams.postSlug))
+      $scope.comments = $scope.$meteorCollection(->
+        options = sort: { createdAt: -1 }
+        Comments.find(postId: $scope.getReactively('post')[0]._id, options)
+      )
+    )
   )
 
   $scope.addComment = ->
@@ -19,9 +20,6 @@ angular.module('theCafeApp')
     _.extend($scope.newComment,
       # parentCommentId:
       # topLevelCommentId:
-      author: Meteor.user().name or Meteor.user().emails[0].address
-      createdAt: new Date()
-      createdBy: Meteor.userId()
       postId: $scope.post[0]._id
     )
     Comments.insert($scope.newComment)
