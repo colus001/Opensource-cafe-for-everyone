@@ -19,3 +19,6 @@
   urlify: (text) ->
     text = "http://" + text if !/^(f|ht)tps?:\/\//i.test(text)
     text
+
+  sum: (xs, f) ->
+    _.reduce(xs, ((memo, x) -> memo + f(x)), 0)
