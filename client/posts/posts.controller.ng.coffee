@@ -1,5 +1,8 @@
 'use strict'
 
+COMMENT_DEFAULT_QUERY =
+  parentCommentId: null
+
 angular.module('theCafeApp')
 .controller('PostsCtrl', ($scope, $stateParams, $meteor) ->
   slug = $stateParams.postSlug
@@ -12,7 +15,8 @@ angular.module('theCafeApp')
     if $scope.getReactively('post')
       $scope.$meteorSubscribe('getCommentByPostId', $scope.post._id)
       $scope.comments = $scope.$meteorCollection(->
-        Comments.find(postId: $scope.post._id, DEFAULT_QUERY_OPTIONS)
+        query = _.defaults(COMMENT_DEFAULT_QUERY, postId: $scope.post._id)
+        Comments.find(query, DEFAULT_QUERY_OPTIONS)
       )
   )
 

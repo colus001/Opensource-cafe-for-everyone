@@ -4,10 +4,12 @@ Meteor.publish('getCommentByPostId', (id) ->
   Comments.find(postId: id)
 )
 
+Meteor.publish('getCommentsByCommentId', (id) ->
+  Comments.find(parentCommentId: id)
+)
+
 _updateNumberOfComment = (comment) ->
-  comments = Comments.find(postId: comment.postId).fetch()
-  return unless comments
-  Posts.update(comment.postId, $set: { comments: comments.length })
+  Posts.update(comment.postId, $set: { comments: Comments.find(postId: comment.postId).count() })
 
 Meteor.methods(
   createComment: (comment) ->
