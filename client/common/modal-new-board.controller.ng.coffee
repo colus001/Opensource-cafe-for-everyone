@@ -1,10 +1,10 @@
 'use strict'
 
 angular.module('theCafeApp')
-.controller('ModalNewBoardCtrl', ($scope, $modalInstance) ->
+.controller('ModalNewBoardCtrl', ($scope, $meteor, $modalInstance) ->
   $scope.create = ->
     return unless $scope.boardForm.$valid
-    new Board($scope.newBoard).save()
+    $meteor.call('createBoard', $scope.newBoard)
     $scope.newBoard = undefined
     $modalInstance.close()
 

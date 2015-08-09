@@ -3,6 +3,7 @@
 @DEFAULT_QUERY_OPTIONS =
   sort:
     score: -1
+    comments: -1
     createdAt: -1
 
 @SCHEMA_HELPER =

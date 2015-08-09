@@ -1,7 +1,6 @@
 @Boards = new Mongo.Collection('boards')
 
 Boards.attachSchema(new SimpleSchema(
-  _id: SCHEMA_HELPER.ID
   shortId: SCHEMA_HELPER.SHORT_ID
   createdAt:
     label: "Created At"

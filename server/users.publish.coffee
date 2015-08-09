@@ -1,5 +1,6 @@
 Accounts.onCreateUser((options, user) ->
-  user.shortId = Util.makeShortId(SHORT_ID_LENGTH)
-  console.log user
+  _.extend(user,
+    shortId: Util.makeShortId(SHORT_ID_LENGTH)
+  )
   user
 )

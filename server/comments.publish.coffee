@@ -10,17 +10,18 @@ _updateNumberOfComment = (comment) ->
   Posts.update(comment.postId, $set: { comments: comments.length })
 
 Meteor.methods(
-  'createComment': (comment) ->
+  createComment: (comment) ->
     check(comment, Object)
     user = Meteor.user()
     _.extend(comment,
       authorId: user.shortId
       author: user.name or user.emails[0].address
+      shortId: Util.makeShortId(SHORT_ID_LENGTH)
     )
     Comments.insert(comment)
     _updateNumberOfComment(comment)
 
-  'upvoteComment': (commentId) ->
+  upvoteComment: (commentId) ->
     comment = Comments.findOne(_id: commentId)
     userId = this.userId
 
@@ -46,7 +47,7 @@ Meteor.methods(
 
     Comments.update(comment._id, options)
 
-  'downvoteComment': (commentId) ->
+  downvoteComment: (commentId) ->
     comment = Comments.findOne(_id: commentId)
     userId = this.userId
 

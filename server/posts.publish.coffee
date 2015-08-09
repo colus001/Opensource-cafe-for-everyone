@@ -16,7 +16,7 @@ Meteor.publish('getPopularPosts', ->
 )
 
 Meteor.methods(
-  'createPost': (post) ->
+  createPost: (post) ->
     check(post, Object)
     _.extend(post,
       createdAt: new Date()
@@ -34,7 +34,8 @@ Meteor.methods(
     console.log post
     Posts.insert(post)
 
-  'upvotePost': (postId) ->
+  upvotePost: (postId) ->
+    check(postId, String)
     post = Posts.findOne(_id: postId)
     userId = this.userId
 
@@ -60,7 +61,8 @@ Meteor.methods(
 
     Posts.update(post._id, options)
 
-  'downvotePost': (postId) ->
+  downvotePost: (postId) ->
+    check(postId, String)
     post = Posts.findOne(_id: postId)
     userId = this.userId
 

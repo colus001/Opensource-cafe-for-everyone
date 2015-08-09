@@ -8,18 +8,11 @@ Meteor.publish('getAllBoards', ->
   Boards.find()
 )
 
-# Meteor.publish('boards', (options, searchString) ->
-#   searchString = '' if !searchString
-#
-#   Counts.publish(this, 'numberOfBoards', Boards.find(
-#     'title':
-#       '$regex': '.*' + searchString or '' + '.*'
-#       '$options': 'i'
-#   ), noReady: true)
-#
-#   Boards.find({
-#     'symbol':
-#       '$regex': '.*' + searchString or '' + '.*'
-#       '$options': 'i'
-#   }, options)
-# )
+Meteor.methods(
+  createBoard: (board) ->
+    check(board, Object)
+    _extend(board,
+      shortId: Util.makeShortId(SHORT_ID_LENGTH)
+    )
+    Boards.insert(board)
+)

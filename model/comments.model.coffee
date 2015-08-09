@@ -1,7 +1,6 @@
 @Comments = new Mongo.Collection('comments')
 
 Comments.attachSchema(new SimpleSchema(
-  _id: SCHEMA_HELPER.ID
   shortId: SCHEMA_HELPER.SHORT_ID
   createdAt:
     type: Date

@@ -1,7 +1,6 @@
 @Posts = new Mongo.Collection('posts')
 
 Posts.attachSchema(new SimpleSchema(
-  _id: SCHEMA_HELPER.ID
   shortId: SCHEMA_HELPER.SHORT_ID
   createdAt:
     type: Date
