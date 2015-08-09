@@ -16,7 +16,7 @@ angular.module('theCafeApp')
 
   $scope.open = ->
     modalInstance = $modal.open(
-      templateUrl: 'client/common/modal-post.view.ng.html'
+      templateUrl: 'client/common/modal/modal-post.view.ng.html'
       controller: 'ModalPostCtrl'
       resolve:
         symbol: -> symbol

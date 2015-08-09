@@ -5,7 +5,7 @@
     )
     return null unless text
 
-    text = unidecode(text) if options.decode
+    text = unidecode(text) if options.decode and unidecode?
     text.toLowerCase()
       .replace(/[\?\.,-\/#!$%\^&\*;:{}=\-_`~()]/g, '') # Remove all punctuations
       .replace(/\s+/g, '-')       # Replace spaces with -

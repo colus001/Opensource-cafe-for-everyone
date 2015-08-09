@@ -12,7 +12,7 @@ Meteor.methods(
   createBoard: (board) ->
     check(board, Object)
     _.extend(board,
-      symbol: board.symbol?.toLowerCase() or board.title?.toLowerCase()
+      symbol: board.symbol?.toLowerCase() or Util.slugify(board.title)
       creatorId: Meteor.user().profile.shortId
       shortId: Util.makeShortId(SHORT_ID_LENGTH)
     )
