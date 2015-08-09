@@ -5,7 +5,6 @@ angular.module('theCafeApp')
   $scope.post = ->
     return unless $scope.postForm.$valid
     $meteor.call('createPost', $scope.newPost)
-    # Posts.insert($scope.newPost)
     $scope.newPost = undefined
     $modalInstance.close();
   $scope.cancel = -> $modalInstance.dismiss('cancel')

@@ -12,7 +12,7 @@ Boards.attachSchema(new SimpleSchema(
     defaultValue: new Date()
   creatorId:
     label: "Creator User ID"
-    type: SimpleSchema.RegEx.Id
+    type: SCHEMA_HELPER.SHORT_ID.type
   title:
     label: "Title"
     type: String

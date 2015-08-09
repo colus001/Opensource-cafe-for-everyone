@@ -14,7 +14,7 @@ Meteor.methods(
     check(comment, Object)
     user = Meteor.user()
     _.extend(comment,
-      authorId: user.shortId
+      authorId: user.profile.shortId
       author: user.name or user.emails[0].address
       shortId: Util.makeShortId(SHORT_ID_LENGTH)
     )

@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h3 class="modal-title">Create New Post</h3>
+</div>
+<form name="postForm" ng-submit="post()" novalidate>
+  <div class="modal-body">
+    <div class="well">
+      Post link, text ... or together?
+    </div>
+
+    <div class="form-group">
+      <label>Title {{ getSlug(newPost.title) }}</label>
+      <input type="text" class="form-control" placeholder="Title" ng-model="newPost.title">
+    </div>
+    <div class="form-group">
+      <label>URL</label>
+      <input type="text" placeholder="Submit a new link" ng-model="newPost.link" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label>Text</label>
+      <textarea name="text" cols="30" rows="5" ng-model="newPost.text" class="form-control" placeholder="Write something to share with"></textarea>
+    </div>
+
+    <!-- COMMON -->
+    <div class="form-group">
+      <label>Board</label>
+      <input type="text" class="form-control" ng-model="newPost.board" placeholder="{{ board.symbol }}"/>
+    </div>
+    <!-- COMMON -->
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+</form>

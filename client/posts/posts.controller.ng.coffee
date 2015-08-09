@@ -19,7 +19,7 @@ angular.module('theCafeApp')
   $scope.addComment = ->
     return unless $scope.commentForm.$valid
     _.extend($scope.newComment,
-      postId: Posts.findOne()._id
+      postId: $scope.post._id
     )
     $meteor.call('createComment', $scope.newComment)
     $scope.newComment = undefined

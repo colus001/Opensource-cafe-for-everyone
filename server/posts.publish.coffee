@@ -20,7 +20,7 @@ Meteor.methods(
     check(post, Object)
     _.extend(post,
       createdAt: new Date()
-      authorId: Meteor.user().shortId
+      authorId: Meteor.user().profile.shortId
       author: _getAuthorName(Meteor.user())
       boardId: Boards.findOne(symbol: post.board)._id
       slug: Util.slugify(post.title, decode: false) unless post.slug

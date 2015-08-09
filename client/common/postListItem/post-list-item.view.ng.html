@@ -17,6 +17,6 @@
 
     <button class="btn btn-xs" ng-class="upvoted(post) ? 'btn-success' : 'btn-default'" ng-click="upvote(post)"><i class="fa fa-fw fa-thumbs-up"></i> 좋아요</button>
     <button class="btn btn-xs" ng-class="downvoted(post) ? 'btn-danger' : 'btn-default'" ng-click="downvote(post)"><i class="fa fa-fw fa-thumbs-down"></i> 싫어요</button>
-    <a href="/board/{{ post.board }}/{{ post.authorId }}/{{ post.slug }}" class="btn btn-xs btn-default"><i class="fa fa-fw fa-comment"></i> 댓글 {{ post.comments || 0 }}개</a>
+    <a href="/board/{{ post.board }}/{{ post.authorId }}/{{ post.slug }}" class="btn btn-xs" ng-class="post.comments > 0 ? 'btn-info' : 'btn-default'"><i class="fa fa-fw fa-comment"></i> 댓글 {{ post.comments || 0 }}개</a>
   </div>
 </div>

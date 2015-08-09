@@ -11,7 +11,9 @@ Meteor.publish('getAllBoards', ->
 Meteor.methods(
   createBoard: (board) ->
     check(board, Object)
-    _extend(board,
+    _.extend(board,
+      symbol: board.symbol?.toLowerCase() or board.title?.toLowerCase()
+      creatorId: Meteor.user().profile.shortId
       shortId: Util.makeShortId(SHORT_ID_LENGTH)
     )
     Boards.insert(board)
