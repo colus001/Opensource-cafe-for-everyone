@@ -2,40 +2,19 @@
 
 angular.module('theCafeApp')
 .controller('BoardsListCtrl', ($scope, $meteor, $modal, $log) ->
-  $scope.page = 1
-  $scope.perPage = 10
-  $scope.sort = title_sort : 1
-  $scope.orderProperty = '1'
-
-  $scope.boards = $meteor.collection(->
-    Boards.find({}, { sort:$scope.getReactively('sort') })
+  $meteor.subscribe('getPopularPosts')
+  $meteor.subscribe('getAllBoards')
+  $scope.boards = $scope.$meteorCollection(->
+    Boards.find({})
   )
-  $scope.posts = $meteor.collection(->
-    options =
-      sort:
-        score: -1
-        createdAt: -1
-      limit: 10
-    Posts.find({}, options)
-  )
-
-  $meteor.autorun($scope, ->
-    $meteor.subscribe('posts')
-    $meteor.subscribe('boards')
+  $scope.posts = $scope.$meteorCollection(->
+    Posts.find({}, _.defaults(limit: 5, DEFAULT_QUERY_OPTIONS))
   )
 
   $scope.getHref = (link) -> if link then "http://#{link}" else "#"
 
   $scope.remove = (board) ->
     $scope.boards.remove(board)
-
-  $scope.pageChanged = (newPage) ->
-    $scope.page = newPage
-
-  $scope.$watch('orderProperty', ->
-    if $scope.orderProperty
-      $scope.sort = title_sort: parseInt($scope.orderProperty)
-  )
 
   $scope.open = ->
     modalInstance = $modal.open(

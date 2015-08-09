@@ -4,7 +4,7 @@ angular.module('theCafeApp')
 .controller('ModalNewBoardCtrl', ($scope, $modalInstance) ->
   $scope.create = ->
     return unless $scope.boardForm.$valid
-    Boards.insert($scope.newBoard)
+    new Board($scope.newBoard).save()
     $scope.newBoard = undefined
     $modalInstance.close()
 

@@ -1,15 +1,16 @@
 'use strict'
 
 angular.module('theCafeApp')
-.controller('BoardDetailCtrl', ($scope, $stateParams, $meteor, $modal, $log) ->
-  $meteor.subscribe('boards')
-  $meteor.subscribe('posts')
+.controller('BoardDetailCtrl', ($scope, $stateParams, $meteor, $modal) ->
+  symbol = $stateParams.symbol
+  $scope.board = {}
 
-  $meteor.autorun($scope, ->
-    $scope.board = $meteor.object(Boards, symbol: $stateParams.symbol)
-    $scope.posts = $meteor.collection(->
-      options = sort: { score: -1, createdAt: -1 }
-      Posts.find(boardId: $scope.board._id, options)
+  $scope.$meteorSubscribe('getBoardBySymbol', symbol).then(->
+    $scope.board = $scope.$meteorObject(Boards, symbol: symbol)
+
+    $scope.$meteorSubscribe('getPostsByBoardSymbol', $scope.getReactively('board').symbol)
+    $scope.posts = $scope.$meteorCollection(->
+      Posts.find(board: $scope.getReactively('board').symbol, DEFAULT_QUERY_OPTIONS)
     )
   )
 
@@ -18,13 +19,6 @@ angular.module('theCafeApp')
       templateUrl: 'client/common/modal-post.view.ng.html'
       controller: 'ModalPostCtrl'
       resolve:
-        symbol: ->
-          return $scope.board.symbol
+        symbol: -> symbol
     )
-
-    # modalInstance.result.then(function (selectedItem) {
-    #   $scope.selected = selectedItem;
-    # }, function () {
-    #   $log.info('Modal dismissed at: ' + new Date());
-    # });
 )

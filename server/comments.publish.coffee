@@ -1,17 +1,25 @@
 'use strict'
 
-Meteor.publish('comments', (options, searchString) ->
-  searchString = '' if !searchString
-
-  Comments.find({
-    'postId':
-      '$regex': '.*' + searchString or '' + '.*'
-      '$options': 'i'
-  }, options)
+Meteor.publish('getCommentByPostId', (id) ->
+  Comments.find(postId: id)
 )
 
+_updateNumberOfComment = (comment) ->
+  comments = Comments.find(postId: comment.postId).fetch()
+  return unless comments
+  Posts.update(comment.postId, $set: { comments: comments.length })
 
 Meteor.methods(
+  'createComment': (comment) ->
+    check(comment, Object)
+    user = Meteor.user()
+    _.extend(comment,
+      authorId: user.shortId
+      author: user.name or user.emails[0].address
+    )
+    Comments.insert(comment)
+    _updateNumberOfComment(comment)
+
   'upvoteComment': (commentId) ->
     comment = Comments.findOne(_id: commentId)
     userId = this.userId

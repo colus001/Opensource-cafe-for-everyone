@@ -3,8 +3,9 @@
     <div class="post-list-score">{{ post.score || 0 }}</div>
   </div>
   <div class="col-xs-11">
-    <a href="/board/{{ post.board }}/{{ post.ownerId }}/{{ post.slug }}">
-      <p>{{ post.title }}<span class="pull-right">by {{ post.ownerId }}</span></p>
+    <a href="/board/{{ post.board }}/{{ post.authorId }}/{{ post.slug }}">
+      <span class="pull-right">by {{ post.author }}</span>
+      <p>{{ post.title }} <span class="label label-default" ng-if="type === 'popular'">{{ post.board }}</span></p>
       <p class="text-overflow" ng-if="post.link">
         <a href="{{post.link}}" target="_blank"><i class="fa fa-bookmark"></i> {{ post.link }}</a>
       </p>
@@ -16,5 +17,6 @@
 
     <button class="btn btn-xs" ng-class="upvoted(post) ? 'btn-success' : 'btn-default'" ng-click="upvote(post)"><i class="fa fa-fw fa-thumbs-up"></i> 좋아요</button>
     <button class="btn btn-xs" ng-class="downvoted(post) ? 'btn-danger' : 'btn-default'" ng-click="downvote(post)"><i class="fa fa-fw fa-thumbs-down"></i> 싫어요</button>
+    <a href="/board/{{ post.board }}/{{ post.authorId }}/{{ post.slug }}" class="btn btn-xs btn-default"><i class="fa fa-fw fa-comment"></i> 댓글 {{ post.comments || 0 }}개</a>
   </div>
 </div>

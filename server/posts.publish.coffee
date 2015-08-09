@@ -1,21 +1,39 @@
 'use strict'
 
-Meteor.publish('posts', (options, searchString) ->
-  if !searchString
-    searchString = ''
-  Counts.publish(this, 'numberOfPosts', Posts.find(
-    'title':
-      '$regex': '.*' + searchString or '' + '.*'
-      '$options': 'i'
-  ), noReady: true)
-  Posts.find({
-    'boardId':
-      '$regex': '.*' + searchString or '' + '.*'
-      '$options': 'i'
-  }, options)
+_getAuthorName = (user) ->
+  user.profile?.name or user.emails[0].address.split('@')[0]
+
+Meteor.publish('getPostBySlug', (slug) ->
+  Posts.find(slug: slug)
+)
+
+Meteor.publish('getPostsByBoardSymbol', (symbol) ->
+  Posts.find(board: symbol)
+)
+
+Meteor.publish('getPopularPosts', ->
+  Posts.find()
 )
 
 Meteor.methods(
+  'createPost': (post) ->
+    check(post, Object)
+    _.extend(post,
+      createdAt: new Date()
+      authorId: Meteor.user().shortId
+      author: _getAuthorName(Meteor.user())
+      boardId: Boards.findOne(symbol: post.board)._id
+      slug: Util.slugify(post.title, decode: false) unless post.slug
+      link: Util.urlify(post.link) if post.link
+      shortId: Util.makeShortId(SHORT_ID_LENGTH)
+      score: 0
+      upvotes: 0
+      downvotes: 0
+    )
+    return throw new Meteor.Error('text or link is required') if not post.text and not post.link
+    console.log post
+    Posts.insert(post)
+
   'upvotePost': (postId) ->
     post = Posts.findOne(_id: postId)
     userId = this.userId
@@ -39,8 +57,6 @@ Meteor.methods(
         _.extend(options, $pop: { downvoters: userId })
 
     _.extend(options.$set, score: upvotes - downvotes)
-
-    # return console.log options
 
     Posts.update(post._id, options)
 

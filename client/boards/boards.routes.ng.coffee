@@ -1,10 +1,10 @@
 'use strict'
 
-angular.module 'theCafeApp'
+angular.module('theCafeApp')
 .config(($stateProvider) ->
   $stateProvider
   .state('boards-list',
-    url: '/'
+    url: '/board'
     templateUrl: 'client/boards/boards-list.view.ng.html'
     controller: 'BoardsListCtrl'
   )

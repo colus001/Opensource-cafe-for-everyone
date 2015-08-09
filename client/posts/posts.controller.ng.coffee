@@ -2,27 +2,26 @@
 
 angular.module('theCafeApp')
 .controller('PostsCtrl', ($scope, $stateParams, $meteor) ->
-  $scope.$meteorSubscribe('posts')
-  $scope.$meteorSubscribe('comments')
+  slug = $stateParams.postSlug
+
+  $scope.$meteorSubscribe('getPostBySlug', slug).then(->
+    $scope.post = $meteor.object(Posts, slug: slug)
+  )
 
   $meteor.autorun($scope, ->
-    $scope.$meteorSubscribe('posts').then(->
-      $scope.posts = $scope.$meteorCollection(-> Posts.find(slug: $stateParams.postSlug))
+    if $scope.getReactively('post')
+      $scope.$meteorSubscribe('getCommentByPostId', $scope.post._id)
       $scope.comments = $scope.$meteorCollection(->
-        options = sort: { score: -1, createdAt: -1 }
-        Comments.find(postId: $scope.getReactively('posts')[0]._id, options)
+        Comments.find(postId: $scope.post._id, DEFAULT_QUERY_OPTIONS)
       )
-    )
   )
 
   $scope.addComment = ->
     return unless $scope.commentForm.$valid
     _.extend($scope.newComment,
-      # parentCommentId:
-      # topLevelCommentId:
-      postId: $scope.posts[0]._id
+      postId: Posts.findOne()._id
     )
-    Comments.insert($scope.newComment)
+    $meteor.call('createComment', $scope.newComment)
     $scope.newComment = undefined
 
   $scope.getBoardSymbol = -> $stateParams.symbol
