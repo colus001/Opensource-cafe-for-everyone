@@ -4,6 +4,7 @@ angular.module('theCafeApp', [
   'ui.bootstrap'
   'angularUtils.directives.dirPagination'
   'yaru22.angular-timeago'
+  'ui.tree'
 ])
 
 onReady = ->

@@ -31,7 +31,6 @@ Meteor.methods(
       downvotes: 0
     )
     return throw new Meteor.Error('text or link is required') if not post.text and not post.link
-    console.log post
     Posts.insert(post)
 
   upvotePost: (postId) ->

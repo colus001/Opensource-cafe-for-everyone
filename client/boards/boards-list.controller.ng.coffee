@@ -2,8 +2,8 @@
 
 angular.module('theCafeApp')
 .controller('BoardsListCtrl', ($scope, $meteor, $modal, $log) ->
-  $meteor.subscribe('getPopularPosts')
-  $meteor.subscribe('getAllBoards')
+  $scope.$meteorSubscribe('getPopularPosts')
+  $scope.$meteorSubscribe('getAllBoards')
   $scope.boards = $scope.$meteorCollection(->
     Boards.find({})
   )

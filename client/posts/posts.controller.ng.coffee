@@ -12,12 +12,13 @@ angular.module('theCafeApp')
   )
 
   $meteor.autorun($scope, ->
-    if $scope.getReactively('post')
-      $scope.$meteorSubscribe('getCommentByPostId', $scope.post._id)
-      $scope.comments = $scope.$meteorCollection(->
-        query = _.defaults(COMMENT_DEFAULT_QUERY, postId: $scope.post._id)
-        Comments.find(query, DEFAULT_QUERY_OPTIONS)
-      )
+    post = $scope.getReactively('post')
+    return unless post
+    $scope.$meteorSubscribe('getCommentByPostId', post._id)
+    $scope.comments = $scope.$meteorCollection(->
+      query = _.defaults(COMMENT_DEFAULT_QUERY, postId: post._id)
+      Comments.find(query, DEFAULT_QUERY_OPTIONS)
+    )
   )
 
   $scope.addComment = ->
