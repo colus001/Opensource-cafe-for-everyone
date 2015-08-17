@@ -24,10 +24,16 @@
     _.reduce(xs, ((memo, x) -> memo + f(x)), 0)
 
   getCommentTree: (comments) ->
-    comments = _.chain(comments).sortBy((comment) -> -comment.score).groupBy((comment) -> if not _.has(comment, "parentCommentId") then "parents" else "children").value()
-    _.each(comments.parents, (parent) => @findChildren(parent, comments.children))
-    comments.parents
-    
+    {parents, children} =
+      _.chain(comments)
+        .sortBy((comment) -> -comment.createdAt)
+        .sortBy((comment) -> -comment.score)
+        .groupBy((comment) -> if not _.has(comment, "parentCommentId") then "parents" else "children")
+        .value()
+
+    _.each(parents, (parent) => @findChildren(parent, children))
+    parents
+
   findChildren: (parent, comments) ->
     children = _.where(comments, parentCommentId: parent._id)
     return unless children
