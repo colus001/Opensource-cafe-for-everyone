@@ -1,8 +1,5 @@
 'use strict'
 
-COMMENT_DEFAULT_QUERY =
-  parentCommentId: null
-
 angular.module('theCafeApp')
 .controller('PostsCtrl', ($scope, $stateParams, $meteor) ->
   slug = $stateParams.postSlug
@@ -15,13 +12,12 @@ angular.module('theCafeApp')
     post = $scope.getReactively('post')
     return unless post
     $scope.$meteorSubscribe('getCommentByPostId', post._id)
-    $scope.comments = $scope.$meteorCollection(->
-      query = _.defaults(COMMENT_DEFAULT_QUERY, postId: post._id)
-      Comments.find(query, DEFAULT_QUERY_OPTIONS)
-    )
+
+    comments = Comments.find(postId: post._id).fetch()
+    $scope.comments = Util.getCommentTree(comments)
   )
 
-  $scope.addComment = ->
+  $scope.addTopComment = ->
     return unless $scope.commentForm.$valid
     _.extend($scope.newComment,
       postId: $scope.post._id
