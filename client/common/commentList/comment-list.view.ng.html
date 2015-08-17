@@ -14,7 +14,7 @@
           <button class="btn btn-xs" ng-class="'btn-default'" ng-click="comment.isHidden = !comment.isHidden"><i class="fa fa-fw fa-comment"></i> 댓글달기</button>
         </div>
       </div>
-      <ul class="comment-list" style="margin-top: 1rem;" ng-show="comment.isHidden">
+      <ul style="margin-top: 1rem;" ng-show="comment.isHidden">
         <li class="comment-list-form">
           <form name="commentForm" ng-submit="addComment(newSubComment, comment)">
             <div class="form-group">
