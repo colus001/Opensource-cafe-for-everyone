@@ -8,7 +8,7 @@ angular.module('theCafeApp')
     Boards.find({})
   )
   $scope.posts = $scope.$meteorCollection(->
-    Posts.find({}, _.defaults(limit: 5, DEFAULT_QUERY_OPTIONS))
+    Posts.find({}, _.defaults(DEFAULT_QUERY_OPTIONS))
   )
 
   $scope.getHref = (link) -> if link then "http://#{link}" else "#"

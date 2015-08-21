@@ -5,7 +5,7 @@ Meteor.publish('getBoardBySymbol', (symbol) ->
 )
 
 Meteor.publish('getAllBoards', ->
-  Boards.find()
+  Boards.find({})
 )
 
 Meteor.methods(

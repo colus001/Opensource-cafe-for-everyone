@@ -3,17 +3,19 @@
     <div class="post-list-score">{{ post.score || 0 }}</div>
   </div>
   <div class="col-xs-11">
+    <span class="pull-right">{{ post.createdAt|timeAgo }} by {{ post.author }}</span>
     <a href="/board/{{ post.board }}/{{ post.authorId }}/{{ post.slug }}">
-      <span class="pull-right">by {{ post.author }}</span>
       <p>{{ post.title }} <span class="label label-default" ng-if="type === 'popular'">{{ post.board }}</span></p>
-      <p class="text-overflow" ng-if="post.link">
-        <a href="{{post.link}}" target="_blank"><i class="fa fa-bookmark"></i> {{ post.link }}</a>
-      </p>
-      <div ng-switch="type" ng-if="post.text">
-        <p class="post-text" ng-switch-when="view" ng-repeat="line in getMultilineText(post.text) track by $index">{{ line }}</p>
-        <p class="text-overflow" ng-switch-default>{{ post.text }}</p>
-      </div>
     </a>
+
+    <p class="text-overflow" ng-if="post.link">
+      <a href="{{post.link}}" target="_blank"><i class="fa fa-bookmark"></i> {{ post.link }}</a>
+    </p>
+
+    <div ng-switch="type" ng-if="post.text">
+      <p class="post-text" ng-switch-when="view" ng-repeat="line in getMultilineText(post.text) track by $index">{{ line }}</p>
+      <p class="text-overflow" ng-switch-default>{{ post.text }}</p>
+    </div>
 
     <button class="btn btn-xs" ng-class="upvoted(post) ? 'btn-success' : 'btn-default'" ng-click="upvote(post)"><i class="fa fa-fw fa-thumbs-up"></i> 좋아요</button>
     <button class="btn btn-xs" ng-class="downvoted(post) ? 'btn-danger' : 'btn-default'" ng-click="downvote(post)"><i class="fa fa-fw fa-thumbs-down"></i> 싫어요</button>

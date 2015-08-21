@@ -12,7 +12,11 @@ Meteor.publish('getPostsByBoardSymbol', (symbol) ->
 )
 
 Meteor.publish('getPopularPosts', ->
-  Posts.find()
+  sort =
+    score: -1
+    comments: -1  
+
+  Posts.find({}, {sort: sort, limit: 10})
 )
 
 Meteor.methods(
