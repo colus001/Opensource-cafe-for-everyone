@@ -1,3 +1,5 @@
 'use strict'
 
-Meteor.publish('events')
+Meteor.publish('events', ->
+  Events.find()
+)

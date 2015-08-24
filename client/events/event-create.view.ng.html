@@ -1,10 +1,38 @@
 <div class="event-detail container">
-  <h1>Here are the details of the event</h1>
-  <form name="form" ng-submit="save()" novalidate>
-    <input class="form-control" type="text" placeholder="name" ng-model="event.name" />
-    <span class="input-group-btn">
-      <input class="btn btn-primary" type="submit" value="Save" />
-      <input class="btn" type="button" ng-click="reset()" value="Reset" />
-    </span>
+  <h1>Create New Meetup</h1>
+  <form name="eventForm" ng-submit="post()" novalidate>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="well">
+            Create event with title, url and text...?
+          </div>
+          <div class="form-group">
+            <label>Title {{ getSlug(newPost.title) }}</label>
+            <input type="text" class="form-control" placeholder="Title" ng-model="newPost.title">
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <div class="form-control">CALENDAR IS HERE</div>
+          </div>
+          <div class="form-group">
+            <label>URL</label>
+            <input type="text" placeholder="Submit a new link" ng-model="newPost.link" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+            <label>Text</label>
+            <textarea name="text" cols="30" rows="5" ng-model="newPost.text" class="form-control" placeholder="Write something to share with"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Board</label>
+            <input type="text" class="form-control" ng-model="newPost.board" placeholder="{{ board.symbol }}"/>
+          </div>
+          <hr>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+      </div>
+    </div>
   </form>
 </div>
