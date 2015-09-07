@@ -1,1 +1,1 @@
-unidecode = require('unidecode');
+Unidecode = require('unidecode');

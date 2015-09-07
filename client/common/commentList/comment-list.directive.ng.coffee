@@ -7,7 +7,6 @@ angular.module('theCafeApp')
     templateUrl: 'client/common/commentList/comment-list.view.ng.html'
     replace: true
     link: (scope, elem, attrs) ->
-      self = this
       scope.upvoted = (comment) ->
         _.contains(comment?.upvoters, Meteor.userId()) or false
       scope.downvoted = (comment) ->

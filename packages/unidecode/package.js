@@ -1,6 +1,6 @@
 Package.describe({
   name: 'unidecode',
-  version: '0.0.1',
+  version: '0.1.0',
   // Brief, one-line summary of the package.
   summary: '',
   // URL to the Git repository containing the source code for this package.
@@ -17,5 +17,5 @@ Npm.depends({
 Package.onUse(function(api) {
   api.use(['cosmos:browserify@0.2.0'], 'client')
   api.addFiles(['client.browserify.js'], 'client');
-  api.export('unidecode', 'client');
+  api.export('Unidecode', 'client');
 });
